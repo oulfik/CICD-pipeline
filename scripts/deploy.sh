@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+
 echo "Removing api container if it exists..."
 docker container rm -f api || true
 echo "Removing network test-net if it exists..."
@@ -29,4 +29,5 @@ echo "Smoke tests..."
 docker container run --name tester \
     --rm \
     --net test-net \
-    gnschenker/node-docker sh -c "curl api:3000"
+    curlimages/curl:7.86.0 sh -c "curl api:3000"
+

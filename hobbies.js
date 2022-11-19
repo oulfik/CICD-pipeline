@@ -1,3 +1,5 @@
+// simulates a database
+
 const hobbies =
 ["jogging","cooking","diving","swimming","reading"];
 exports.getHobbies = () => {

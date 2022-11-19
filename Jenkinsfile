@@ -5,10 +5,10 @@ pipeline {
     }
     agent {
         docker {
-        image 'gnschenker/node-docker'
-        args '-p 3000:3000'
-        args '-w /app'
-        args '-v /var/run/docker.sock:/var/run/docker.sock'
+            image 'oliulf/jenkins:1.0'
+            args '-p 3000:3000'
+            args '-w /app'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     options {
@@ -27,17 +27,26 @@ pipeline {
         }
         stage("Build & Push Docker image") {
             steps {
-                sh 'docker image build -t $registry:$BUILD_NUMBER
-                .'
-                sh 'docker login -u oliulf -p $DOCKER_PWD'
-                sh 'docker image push $registry:$BUILD_NUMBER'
+                sh 'docker image build -t $registry:$BUILD_NUMBER .'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'C_PASS', usernameVariable: 'C_USER')]) {
+                        sh 'docker login -u $C_USER -p $C_PASS'
+                        sh 'docker image push $registry:$BUILD_NUMBER'
+                    }
+
                 sh "docker image rm $registry:$BUILD_NUMBER"
             } 
         }
 
         stage('Deploy and smoke test') {
             steps{
-                sh './scripts/deploy.sh'
+                sh 'chmod +x ./scripts/*.sh'
+                script{
+                    sh(
+                        script: '''#!/bin/bash
+                                    ./scripts/deploy.sh
+                                '''
+                        )
+                }
             }
         }
 

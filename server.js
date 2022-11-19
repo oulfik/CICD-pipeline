@@ -1,3 +1,5 @@
+// defines RESTful API
+
 const hobbies = require('./hobbies');
 const express = require('express');
 const app = express();
