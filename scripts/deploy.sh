@@ -29,4 +29,5 @@ echo "Smoke tests..."
 docker container run --name tester \
     --rm \
     --net test-net \
-    gnschenker/node-docker sh -c "curl api:3000"
+    curlimages/curl:7.86.0 sh -c "curl api:3000"
+

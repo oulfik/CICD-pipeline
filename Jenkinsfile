@@ -28,8 +28,11 @@ pipeline {
         stage("Build & Push Docker image") {
             steps {
                 sh 'docker image build -t $registry:$BUILD_NUMBER .'
-                sh 'docker login -u oliulf -p $DOCKER_PWD'
-                sh 'docker image push $registry:$BUILD_NUMBER'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'C_PASS', usernameVariable: 'C_USER')]) {
+                        sh 'docker login -u $C_USER -p $C_PASS'
+                        sh 'docker image push $registry:$BUILD_NUMBER'
+                    }
+
                 sh "docker image rm $registry:$BUILD_NUMBER"
             } 
         }
