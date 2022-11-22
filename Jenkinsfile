@@ -39,6 +39,7 @@ pipeline {
 
         stage('Deploy and smoke test') {
             steps{
+                sh 'chmod +x ./scripts/*.sh'
                 sh './scripts/deploy.sh'
             }
         }

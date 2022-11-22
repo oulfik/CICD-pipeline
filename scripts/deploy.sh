@@ -13,7 +13,7 @@ docker container run -d \
 
 read -d '' wait_for << EOF
 echo "Waiting for API to listen on port 3000..."
-while ! nc -z api 3000; do
+while nc -z api 3000; do
     sleep 0.1 # wait for 1/10 of the second before check again
     printf "."
 done
