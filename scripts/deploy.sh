@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+
 echo "Removing api container if it exists..."
 docker container rm -f api || true
 echo "Removing network test-net if it exists..."
@@ -12,7 +12,6 @@ docker container run -d \
 # Logic to wait for the api component to be ready on port 3000
 
 read -d '' wait_for << EOF
-#!/bin/bash
 echo "Waiting for API to listen on port 3000..."
 while ! nc -z api 3000; do
     sleep 0.1 # wait for 1/10 of the second before check again
