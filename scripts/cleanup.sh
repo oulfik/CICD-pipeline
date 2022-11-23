@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 docker rm -f api
-sleep 5
+docker network disconnect -f test-net api
 docker network rm test-net
 
