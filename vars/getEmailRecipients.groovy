@@ -1,3 +1,3 @@
 def call(){
-    sh 'executed!'
+    echo 'executed!'
 }
