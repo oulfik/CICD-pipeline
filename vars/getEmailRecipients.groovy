@@ -1,3 +1,3 @@
-def getEmailRecipients(){
+def send(){
     sh 'executed!'
 }
