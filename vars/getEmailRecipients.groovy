@@ -1,3 +1,3 @@
-def send(){
+def call(){
     sh 'executed!'
 }
