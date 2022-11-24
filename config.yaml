@@ -3,6 +3,11 @@ mail_settings:
     on_failure:
       send_to:
         - someAdress@gmail.com
+        - anotherAdress@gmail.com
+    on_success:
+      send_to:
+        - someAdress@gmail.com
+
   case2:
     on_success:
       send_to:
