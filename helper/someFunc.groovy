@@ -1,4 +1,4 @@
-def call(){
+def doSth(){
 
 
     echo 'Called function call()!'
