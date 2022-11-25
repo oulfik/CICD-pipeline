@@ -6,4 +6,4 @@ def doSth(){
 }
 
 
-return this
+return this;
