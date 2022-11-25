@@ -1,4 +1,3 @@
-@groovy.transform.Field
 
 def sendMails(){
     echo 'sent mail'
