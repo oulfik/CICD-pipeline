@@ -1,5 +1,5 @@
 
-def sendMails(){
+def sendMails(String buildStatus){
     echo 'sent mail'
 }
 
