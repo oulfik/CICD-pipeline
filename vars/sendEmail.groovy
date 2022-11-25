@@ -1,12 +1,9 @@
-import groovy.yaml.YamlSlurper
 
 def call(String buildStatus, String buildName, Map config){
     println(buildStatus)
-    def mailConfigJSON =  new YamlSlurper().parseText(config.mail_settings)
-    println(mailConfigJSON)
-    println(mailConfigJSON.getClass())
-    def recipients = mailConfigJSON[buildName][buildStatus.toLowerCase()]['send_to']
-    
+    def recipients = config.mail_settings[buildName][buildStatus.toLowerCase()]['send_to']
+    print(recipients)
+    println(recipients.getClass())
 
 
 
