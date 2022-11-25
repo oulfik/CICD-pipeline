@@ -2,11 +2,23 @@
 def call(String buildStatus, String buildName, Map config){
     println(buildStatus)
     def recipients = config.mail_settings[buildName][buildStatus.toLowerCase()]['send_to']
-    print(recipients)
-    println(recipients.getClass())
+    def subject = ""
+    def body = ""
 
+    if(buildStatus == "SUCCESS"){
+        subject = "Pipeline has succeded: ${currentBuild.fullDisplayName}"
+        body = "Success in ${env.BUILD_URL}"
+    } else if(buildStatus == "FAILURE"){
+        subject = "Pipeline has failed!: ${currentBuild.fullDisplayName}"
+        body = "Failure in ${env.BUILD_URL}"
+    }
 
+    emailext(
+        to: 'someEmail@gmail.com, another@gmail.com',
+        subject: subject,
+        body: body
+    )
 
     echo 'executed!'
-    return 'someEmail@gmail.com'
+
 }
