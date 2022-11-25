@@ -1,4 +1,4 @@
-def build(String arg1) {
+def mail(String arg1) {
         sh """
         echo "from build function : ${arg1}"
         """
