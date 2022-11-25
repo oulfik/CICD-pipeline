@@ -12,9 +12,9 @@ def call(String buildStatus, String buildName, Map config){
         subject = "Pipeline has failed!: ${currentBuild.fullDisplayName}"
         body = "Failure in ${env.BUILD_URL}"
     }
-
+    println(body)
     emailext(
-        to: 'someEmail@gmail.com, another@gmail.com',
+        to: 'someEmail@gmail.com; another@gmail.com',
         subject: subject,
         body: body
     )
