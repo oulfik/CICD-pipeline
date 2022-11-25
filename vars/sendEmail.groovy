@@ -4,7 +4,8 @@ def call(String buildStatus, String buildName, Map config){
     println(buildStatus)
     println(config)
     def mailConfigJSON =  JsonOutput.toJson(config.mail_settings)
-    println(mailConfigJSON)
+    def recipients = mailConfigJSON[buildName][buildStatus.toLowerCase()]['send_to']
+    
 
 
 
