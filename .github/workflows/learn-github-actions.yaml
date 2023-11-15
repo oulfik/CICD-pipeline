@@ -12,4 +12,6 @@ jobs:
       - run: npm install -g bats
       - run: bats -v
       - run: ls -lah
-      - run: printenv
+      - run: echo "my repo variable is:$MY_VAR"
+      - env:
+          MY_VAR: ${{ vars.TEST_VAR }}
